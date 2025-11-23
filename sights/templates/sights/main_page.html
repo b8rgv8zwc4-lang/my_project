@@ -1,0 +1,251 @@
+{%extends "sights/layout.html"%}
+
+{%block title%} Топ лучших и наиболее посещаемых достопримечательностей мира 
+Бронирование билетов на самолёт
+{%endblock%}
+{% load static %}
+
+{%block body%}
+
+<style>
+    body {
+        background-color: #d5dece;
+        border: 3px solid black;
+        padding: 50px;
+        margin: 3px;
+        border-radius: 10px;
+        
+    }
+
+    /* #map {
+            height: 600px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        } */
+
+    .page-header {
+        /* background-color: #ff9400; */
+        margin-top: 0;
+        padding: 20px 20px 20px 40px;
+    }
+
+    .beauty {
+        font-family: 'Lobster';
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .for_photo {
+        background-image: url("{% static 'sights/photos/background.jpeg' %}");
+        /* путь к твоему фото */
+        background-size: cover;
+        /* фото растягивается на весь экран */
+        background-position: center;
+        /* центрирование */
+        background-repeat: no-repeat;
+        /* без повторов */
+        color: white;
+        /* цвет текста на фоне */
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 100px;
+    }
+
+    .intro {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("{% static 'sights/photos/background.jpeg' %}");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        padding: 60px;
+        border-radius: 15px;
+    }
+
+    .position{ display: flex;
+    }
+    a {
+        display:inline-block;
+        margin: 0 80px;
+    }
+    .bordered-text { 
+        -webkit-text-stroke: 1px #000000
+    
+}
+
+</style>
+
+    <div class="position">
+        <div id="eurasia"><a href="/sights/euro/">Евразия</a></div>
+        <div id="south_america"><a href="/sights/south_am/">Южная Америка</a></div>
+        <div id="africa"><a href="/sights/africa/">Африка</a></div>
+        <div id="north_america"><a href="/sights/north_am/">Северная Америка</a></div>
+        <div id="australia"><a href="/sights/australia/">Австралия</a></div>
+    </div>
+
+
+<div class="beauty"  style="position: relative; display: inline-block;">
+    <div class="page-header for_photo intro">
+        <h1 style="text-align:center" class="bordered-text">Откройте для себя мир достопримечательностей!</h1>
+        <h1 style="text-align:center" class="bordered-text"> Не упустите возможность побывать в прекрасных местах нашей плаенты</h1>
+        <h1 style="text-align: center;" class="bordered-text">Здесь вы с лёгкостью сможете забронировать билет на самолёт и получше узнать нашу планету</h1>
+    </div>
+</div>
+
+
+<style>
+    .gallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 30px;
+        margin: 20px auto;
+        max-width: 1200px;
+    }
+
+    .gallery div {
+        flex: 0 0 calc(50% - 15px);
+        max-width: 500px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .gallery h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .gallery img {
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .site-footer {
+    background: #beccb6;
+    color: #ddd;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
+}
+
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 30px;
+        flex-wrap: wrap;
+    }
+
+</style>
+
+
+<div class="gallery">
+    <div>
+        <h2>Росcия</h2>
+        <img src="{% static 'sights/photos/kreml_moscow.jpeg' %}" alt="Кремль в России" width="300" height="300">
+    </div>
+    <div>
+        <h2>Париж</h2>
+        <img src="{% static 'sights/photos/eifel.jpeg' %}" alt="Эйфелевая башня в Париже" width="300" height="300">
+    </div>
+    <div>
+        <h2>Сидней</h2>
+        <img src="{% static 'sights/photos/theatre_sidney.jpeg' %}" alt="Знаменитый театр в Сиднее" width="300"
+            height="300">
+    </div>
+    <div>
+        <h2>Рим</h2>
+        <img src="{% static 'sights/photos/coliseum.jpeg' %}" alt="Коллизей в Риме" width="300" height="300">
+    </div>
+    <div>
+        <h2>Индия</h2>
+        <img src="{% static 'sights/photos/tadj.jpeg' %}" alt="Тадж-Махал в Индии" width="300" height="300">
+    </div>
+    <div>
+        <h2>Великобритания</h2>
+        <img src="{% static 'sights/photos/stonehedj.jpeg' %}" alt="Стоунхедж в Великобритании" width="300"
+            height="300">
+    </div>
+    <div>
+        <h2>Узбекистан</h2>
+        <img src="{% static 'sights/photos/samarkand.jpeg' %}" width="300" height="300">
+    </div>
+    <div>
+        <h2>Германия</h2>
+        <img src="{% static 'sights/photos/sobor.jpeg' %}" width="300" height="300">
+    </div>
+    <div>
+        <h2>Дубай</h2>
+        <img src="{% static 'sights/photos/burdj_halifa.jpeg' %}" width="300" height="300">
+    </div>
+    <div>
+        <h2>Китай</h2>
+        <img src="{% static 'sights/photos/greate_wall.jpeg' %}" width="300" height="300">
+    </div>
+</div>
+
+
+<div class="beauty" class="bordered-text">
+    <h3>
+        <p>Мы дадим вам возможность окунуться в мир достопримечательностей. 
+        Забронируйте наш тур и наслаждайтесь мировым сервисом в разных частях нашей планеты
+        </p>
+    </h3>
+
+
+</div>
+
+
+
+
+    
+
+
+<!-- <div id="map"></div>
+
+<script>
+    
+    // Создаём карту и задаём вид
+        var map = L.map('map').setView([20, 0], 2);
+
+        // Добавляем слой карты
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 5,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Координаты материков
+        var continents = {
+            "Евразия": [50, 60],
+            "Африка": [5, 20],
+            "Северная Америка": [50, -100],
+            "Южная Америка": [-15, -60],
+            "Австралия": [-25, 135],
+            "Антарктида": [-75, 0]
+        };
+
+        // Добавляем простые маркеры
+        for (var name in continents) {
+            var coord = continents[name];
+            L.marker(coord)
+                .addTo(map)
+                .bindTooltip(name, {permanent: true, direction: "top"})
+                .openTooltip();
+        }
+</script> -->
+
+<footer class="site-footer" class="footer-content" style="text-align: center;">
+    <h2><a href="/sights/form/">Поделиться впечатлениями</a></h2>
+</footer>
+
+
+
+{%endblock%}

@@ -1,0 +1,30 @@
+{%extends "sights/layout.html"%}
+{% load static%}
+{%block title%} Евразия {%endblock%}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/my_css.css' %}">
+{%endblock%}
+
+{%block body%}
+    <a href="/sights/">Назад</a>
+    <div class="cards-container">
+        {% for sght in sight %}
+        <div class="card">
+            <div class="card-image">
+                {% if sght.euro_photo %}
+                    <img src="{{ sght.euro_photo.url }}" alt="{{ sght.sight_name }}">
+                {%endif%}
+            </div>
+            <div class="card-content">
+                <h3>{{ sght.sight_name }}</h3>
+                <p class="country">{{ sght.sight_country }}</p>
+                <p class="info">{{ sght.sight_information|truncatechars:100 }}</p>
+                <a href="#" class="btn-card">Подробнее</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{%endblock%}
+

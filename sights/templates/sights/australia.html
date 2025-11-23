@@ -1,0 +1,34 @@
+{%extends "sights/layout.html"%}
+{%load static%}
+
+{%block title%}
+    Австралия
+{%endblock%}
+
+{%block extra_css%}
+    <link rel="stylesheet" href="{% static 'css/my_css.css' %}">
+{%endblock%}
+
+
+{%block body%}
+    <a href="/sights/">Назад</a>
+    <div class="cards-container">
+        {% for astrl_s in astrl_sight %}
+        <div class="card">
+            <div class="card-image">
+                {% if astrl_s.astrl_photo %}
+                    <img src="{{ astrl_s.astrl_photo.url }}" alt="{{ astrl_s.sight_name }}">
+                {%endif%}
+            </div>
+            <div class="card-content">
+                <h3>{{ astrl_s.sight_name }}</h3>
+                <p class="country">{{ astrl_s.sight_country }}</p>
+                <p class="info">{{ astrl_s.sight_information|truncatechars:100 }}</p>
+                <a href="#" class="btn-card">Подробнее</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    
+{%endblock%}

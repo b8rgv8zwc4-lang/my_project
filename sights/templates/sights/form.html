@@ -1,0 +1,42 @@
+{%extends "sights/layout.html"%}
+
+{%block title%}
+    Ваши впечатления
+{%endblock%}
+
+{%block body%}
+
+    <style>
+        body {
+            background-color:#d5dece ;
+        }
+
+        .big-form {
+            max-width: 600px; /* максимальная ширина формы */
+            margin: 0 auto;   /* центрирование формы */
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .big-form input, 
+        .big-form textarea, 
+        .big-form select {
+            width: 100%;       /* растянуть поля */
+            padding: 12px;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+    
+    </style>
+
+    <a href="/sights/">Назад</a>
+    <h3 style="text-align: center;">Заполните форму</h3>
+    <form method="post"  class="big-form">
+        {% csrf_token %}
+        {{form.as_div}}
+        <input type="submit">
+    </form>
+{%endblock%}

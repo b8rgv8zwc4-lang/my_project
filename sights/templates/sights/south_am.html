@@ -1,0 +1,32 @@
+{%extends "sights/layout.html"%}
+{% load static %}
+{%block title%}
+    Южная Америка
+{%endblock%}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/my_css.css' %}">
+{%endblock%}
+
+{%block body%}
+       
+
+    <a href="/sights/">Назад</a>
+    <div class="cards-container">
+        {% for s in s_sight %}
+        <div class="card">
+            <div class="card-image">
+                {% if s.s_photo %}
+                    <img src="{{ s.s_photo.url }}" alt="{{ s.sight_name }}">
+                {%endif%}
+            </div>
+            <div class="card-content">
+                <h3>{{ s.sight_name }}</h3>
+                <p class="country">{{ s.sight_country }}</p>
+                <p class="info">{{ s.sight_information|truncatechars:100 }}</p>
+                <a href="#" class="btn-card">Подробнее</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{%endblock%}
