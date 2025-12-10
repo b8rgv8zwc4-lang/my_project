@@ -17,7 +17,16 @@ Including another URLconf
 from os import name
 from django.contrib import admin
 from django.urls import path
-from sights.views import main_page, euro_page, south_page, north_page, africa_page, australia_page, CreateForm, info_page
+from sights.views import (main_page,
+                          euro_page, 
+                          south_page, 
+                          north_page, 
+                          africa_page, 
+                          australia_page, 
+                          CreateForm, 
+                          info_page, 
+                          CreateFormForBuyingTour,
+                          create_map)
 from django.shortcuts import redirect
 from django.conf.urls.static import static
 from django.conf import settings
@@ -37,7 +46,9 @@ urlpatterns = [
     path('sights/africa/', africa_page),
     path('sights/australia/', australia_page),
     path('sights/form/', CreateForm.as_view(), name="form"),
-    path('sights/information/', info_page, name='info')
+    path('sights/information/', info_page, name='info'),
+    path('sights/buy_tour/', CreateFormForBuyingTour.as_view(), name="buy_tour"),
+    path('sights/routes/', create_map)
     
 ]
 

@@ -2,7 +2,15 @@ from re import S
 from django.conf import settings
 from pathlib import Path
 from django.shortcuts import render
-from .models import EurasiaSight, SouthAmericaSight, NorthAmericaSight, AfricaSight, AustraliaSight, FirstForm
+from .models import (EurasiaSight, 
+                     SouthAmericaSight, 
+                     NorthAmericaSight, 
+                     AfricaSight, 
+                     AustraliaSight, 
+                     FirstForm,
+                     BuyTourForm,
+                     MyMap)
+
 from django.views.generic import CreateView
 from django.urls import reverse_lazy
 
@@ -49,3 +57,17 @@ class CreateForm(CreateView):
 def info_page(request):
     info = FirstForm.objects.all()
     return render(request, 'sights/information_about_people.html', {"info": info})
+
+class CreateFormForBuyingTour(CreateView):
+    model = BuyTourForm
+    fields = "__all__"
+    template_name = "sights/buy_tour.html"
+    success_url = reverse_lazy("information")
+
+def info_buy_tour_page(request):
+    information = BuyTourForm.objects.all()
+    return render(request, 'sights/info_buy_tour.html', {"info": information})
+   
+def create_map(request):
+    map = MyMap.objects.all()
+    return render(request, 'sights/routes.html', {"map": map})

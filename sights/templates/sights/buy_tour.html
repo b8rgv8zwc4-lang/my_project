@@ -41,9 +41,9 @@
 
     <a href="/sights/">Назад</a>
     <h3 style="text-align: center;">Заполните форму</h3>
-    <form method="post"  class="big-form" class="card" class="form-container">
+    <form method="post" enctype="multipart/form-data" class="big-form" class="card" class="form-container">
         {% csrf_token %}
-        {{form.as_div}}
+        {{buy_tour.as_p}}
         <input type="submit">
     </form>
 {%endblock%}

@@ -1,102 +1,213 @@
 {%extends "sights/layout.html"%}
 
 {%block title%} Топ лучших и наиболее посещаемых достопримечательностей мира 
-Бронирование билетов на самолёт
+Бронирование билетов и туров
 {%endblock%}
 {% load static %}
 
 {%block body%}
-
 <style>
-    body {
-        background-color: #d5dece;
-        border: 3px solid black;
-        padding: 50px;
-        margin: 3px;
-        border-radius: 10px;
+        body {
+            background-image: url("{% static  'sights/photos/bg3.jpeg' %}");
+            background-attachment: fixed;
+            border: 1px solid black;
+            margin: 3px;
+            border-radius: 10px;
+            
+        }
+        body::before {
+            content: '';
+            position: fixed; 
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("{% static 'sights/photos/bg3.jpeg' %}");
+            background-size: cover;
+            filter: blur(10px); 
+            z-index: -1; 
+            }
+                    
+
+        /* #map {
+                height: 600px;
+                width: 90%;
+                margin: 0 auto;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            } */
+
+        .page-header {
+            /* background-color: #ff9400; */
+            margin-top: 0;
+            padding: 20px 20px 20px 40px;
+        }
+
+        .beauty {
+            font-family: 'Lobster';
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+          .for_photo { 
+            background-image: url("{% static 'sights/photos/background.jpg' %}");
+            background-size: cover;
+            /* фото растягивается на весь экран */
+            background-position: center;
+            /* центрирование */
+            background-repeat: no-repeat;
+            /* без повторов */
+            color: white;
+            /* цвет текста на фоне */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 100px;
+        } 
+
+        .intro {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("{% static 'sights/photos/background.jpeg' %}");
+            width: 100%;
+            height: auto;
+            display: block;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px;
+            border-radius: 15px;
+        }
+
+        .position{ display: flex;
+        }
+        a {
+            display:inline-block;
+            margin: 0 80px;
+        }
+        .bordered-text { 
+            -webkit-text-stroke: 1px #000000
         
     }
-
-    /* #map {
-            height: 600px;
-            width: 90%;
-            margin: 0 auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        } */
-
-    .page-header {
-        /* background-color: #ff9400; */
-        margin-top: 0;
-        padding: 20px 20px 20px 40px;
-    }
-
-    .beauty {
-        font-family: 'Lobster';
-        font-size: 20px;
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .for_photo {
-        background-image: url("{% static 'sights/photos/background.jpeg' %}");
-        /* путь к твоему фото */
-        background-size: cover;
-        /* фото растягивается на весь экран */
-        background-position: center;
-        /* центрирование */
-        background-repeat: no-repeat;
-        /* без повторов */
-        color: white;
-        /* цвет текста на фоне */
-        font-family: Arial, sans-serif;
-        text-align: center;
-        padding: 100px;
-    }
-
-    .intro {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("{% static 'sights/photos/background.jpeg' %}");
-        background-size: cover;
-        background-position: center;
-        color: white;
-        padding: 60px;
-        border-radius: 15px;
-    }
-
-    .position{ display: flex;
-    }
-    a {
-        display:inline-block;
-        margin: 0 80px;
-    }
-    .bordered-text { 
-        -webkit-text-stroke: 1px #000000
     
+        .glass-buttons {
+    height: 50px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    padding: 20px, 30px;
+    border-radius: 20px;
+    display: flex;
+    gap: 10px;
 }
+
+    .glass-btn {
+        padding: 6px, 14px;
+        color: white;
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 10px;
+        text-decoration: none;
+        backdrop-filter: blur(5px);
+        transition: 0.3s;
+    }
+
+    .glass-btn:hover {
+        background: rgba(255,255,255,0.3);
+}
+
+    .card {
+        background: #fff;
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        background: rgba(255, 255, 255, 0.1); /* прозрачность */
+        backdrop-filter: blur(10px);   
+}
+    
+
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+    }
+
+
 
 </style>
 
-    <div class="position">
-        <div id="eurasia"><a href="/sights/euro/">Евразия</a></div>
-        <div id="south_america"><a href="/sights/south_am/">Южная Америка</a></div>
-        <div id="africa"><a href="/sights/africa/">Африка</a></div>
-        <div id="north_america"><a href="/sights/north_am/">Северная Америка</a></div>
-        <div id="australia"><a href="/sights/australia/">Австралия</a></div>
+<div class="glass-buttons">
+    <div id="eurasia" class="glass-btn">
+        <a href="/sights/euro/" class="button-link">Евразия</a>
     </div>
+
+    <div id="south_america" class="glass-btn">
+        <a href="/sights/south_am/" class="button-link">Южная Америка</a>
+    </div>
+
+    <div id="africa" class="glass-btn">
+        <a href="/sights/africa/" class="button-link">Африка</a>
+    </div>
+
+    <div id="north_america" class="glass-btn">
+        <a href="/sights/north_am/" class="button-link">Северная Америка</a>
+    </div>
+
+    <div id="australia" class="glass-btn">
+        <a href="/sights/australia/" class="button-link">Австралия</a>
+    </div>
+</div>
 
 
 <div class="beauty"  style="position: relative; display: inline-block;">
     <div class="page-header for_photo intro">
-        <h1 style="text-align:center" class="bordered-text">Откройте для себя мир достопримечательностей!</h1>
-        <h1 style="text-align:center" class="bordered-text"> Не упустите возможность побывать в прекрасных местах нашей плаенты</h1>
-        <h1 style="text-align: center;" class="bordered-text">Здесь вы с лёгкостью сможете забронировать билет на самолёт и получше узнать нашу планету</h1>
+        <h1 style="text-align:center" class="bordered-text">
+            Откройте для себя мир достопримечательностей!</h1>
+        <h1 style="text-align:center" class="bordered-text">
+             Не упустите возможность побывать в прекрасных местах нашей плаенты</h1>
+        <h1 style="text-align: center;" class="bordered-text">
+            Здесь вы с лёгкостью сможете забронировать билет на самолёт и получше узнать нашу планету</h1>
     </div>
 </div>
+
+
+<style>
+        .dropdown-click {
+    position: relative;
+    display: inline-block;
+    }
+    .dropdown-toggle { display: none; }
+    .dropbtn {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    }
+    .dropdown-content {
+    display: none;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    z-index: 1000;
+    }
+    .dropdown-content a { display: block; padding: 12px 16px; text-decoration: none; color: #333; }
+    .dropdown-content a:hover { background: rgba(255, 255, 255, 0.12); }
+
+    /* Открываем при клике */
+    #dropdown-toggle:checked ~ .dropdown-content {
+    display: block;
+    }
+</style>
+
 
 
 <style>
@@ -151,19 +262,23 @@
     <div>
         <h2>Росcия</h2>
         <img src="{% static 'sights/photos/kreml_moscow.jpeg' %}" alt="Кремль в России" width="300" height="300">
+        <p class="card">Ощутите атмосферу России, прогулявшись по Красной Площади в Москве</p>
     </div>
     <div>
         <h2>Париж</h2>
         <img src="{% static 'sights/photos/eifel.jpeg' %}" alt="Эйфелевая башня в Париже" width="300" height="300">
+        <p class="card">Не упустите возможность посетить уютные парижские заведения, посетив Францию</p>
     </div>
     <div>
         <h2>Сидней</h2>
         <img src="{% static 'sights/photos/theatre_sidney.jpeg' %}" alt="Знаменитый театр в Сиднее" width="300"
             height="300">
+        <p class="card">Хотите в Австралию? Здесь вы сможете ощутить яркую, теплую страну в мгновенье</p>
     </div>
     <div>
         <h2>Рим</h2>
         <img src="{% static 'sights/photos/coliseum.jpeg' %}" alt="Коллизей в Риме" width="300" height="300">
+        <p class="card">Яркий Коллизей, теплые моря, живописные города - все это вы можете почувствовать в Италии</p>
     </div>
     <div>
         <h2>Индия</h2>
@@ -191,23 +306,6 @@
         <img src="{% static 'sights/photos/greate_wall.jpeg' %}" width="300" height="300">
     </div>
 </div>
-
-
-<div class="beauty" class="bordered-text">
-    <h3>
-        <p>Мы дадим вам возможность окунуться в мир достопримечательностей. 
-        Забронируйте наш тур и наслаждайтесь мировым сервисом в разных частях нашей планеты
-        </p>
-    </h3>
-
-
-</div>
-
-
-
-
-    
-
 
 <!-- <div id="map"></div>
 
@@ -242,10 +340,18 @@
         }
 </script> -->
 
-<footer class="site-footer" class="footer-content" style="text-align: center;">
-    <h2><a href="/sights/form/">Поделиться впечатлениями</a></h2>
+<footer class="site-footer" class="footer-content" style="text-align: center;" class="glass-buttons">
+    <h3 class="glass-btn"><a href="/sights/form/">Поделиться впечатлениями</a></h3>
+    <div class="dropdown-click" style="text-align: center;">
+        <input type="checkbox" id="dropdown-toggle" class="dropdown-toggle">
+        <label for="dropdown-toggle" class="dropbtn">Полезные ссылки</label>
+        <div class="dropdown-content">
+            <a href="/events">Календарь событий</a>
+            <a href="/sights/buy_tour/">Купить тур</a>
+            <a href="/sights/routes/">Готовые маршруты</a>
+        </div>
+    </div>
+    <h3><p class="glass-btn">© 2025 Все права защищены.</p></h3>
 </footer>
-
-
 
 {%endblock%}

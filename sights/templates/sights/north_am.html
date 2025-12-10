@@ -23,8 +23,7 @@
             <div class="card-content">
                 <h3>{{ n_s.sight_name }}</h3>
                 <p class="country">{{ n_s.sight_country }}</p>
-                <p class="info">{{ n_s.sight_information|truncatechars:100 }}</p>
-                <a href="#" class="btn-card">Подробнее</a>
+                <p class="info">{{ n_s.sight_information|truncatechars:500}}</p>
             </div>
         </div>
         {% endfor %}
