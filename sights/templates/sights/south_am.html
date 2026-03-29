@@ -1,31 +1,135 @@
 {%extends "sights/layout.html"%}
-{% load static %}
-{%block title%}
-    Южная Америка
-{%endblock%}
+{% load static%}
+{%block title%} Евразия {%endblock%}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/my_css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/continents.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/continents_pages.css' %}">
+    <link rel="stylesheet" href="{% static 'css/filters.css' %}">
+    
 {%endblock%}
 
-{%block body%}
-       
+{%block content%}
+    
+    <a href="/sights/"><button>На главную</button></a>
 
-    <a href="/sights/">Назад</a>
-    <div class="cards-container">
-        {% for s in s_sight %}
-        <div class="card">
-            <div class="card-image">
-                {% if s.s_photo %}
-                    <img src="{{ s.s_photo.url }}" alt="{{ s.sight_name }}">
-                {%endif%}
-            </div>
-            <div class="card-content">
-                <h3>{{ s.sight_name }}</h3>
-                <p class="country">{{ s.sight_country }}</p>
-                <p class="info">{{ s.sight_information|truncatechars:500}}</p>
+
+    <div class="toggle-filters-wrapper">
+        <button class="toggle-filters-btn" onclick="toggleFilters()">
+            <span class="toggle-icon">▼</span>
+            <span class="toggle-text">Показать фильтры</span>
+        </button>
+    </div>
+    
+    <!-- Фильтры по странам -->
+    <div class="filters-container" id="filtersContainer" style="display: none;" data-has-selected-country="{% if selected_country %}true{% else %}false{% endif %}">
+        <div class="filters-wrapper">
+            <h3 class="filters-title">Фильтр по странам:</h3>
+            <div class="filter-buttons">
+                <button class="filter-btn {% if not selected_country %}active{% endif %}" 
+                        onclick="filterByCountry('')">
+                    Все страны
+                </button>
+                {% for country in countries %}
+                    <button class="filter-btn {% if selected_country == country %}active{% endif %}" 
+                            onclick="filterByCountry('{{ country }}')">
+                        {{ country }}
+                    </button>
+                {% endfor %}
             </div>
         </div>
-        {% endfor %}
     </div>
+
+
+    <div class="cards-container">
+        {% for s in s_sight %}
+            <div class="card">
+                <div class="card-image">
+                    {% if s.s_photo %}
+                        <img src="{{ s.s_photo.url }}" alt="{{ s.sight_name }}">
+                    {%endif%}
+                </div>
+                <div class="card-content">
+                    <h3>{{ s.sight_name }}</h3>
+                    <p class="country">{{ s.sight_country }}</p>
+                    <p class="info">{{ s.sight_information|truncatechars:100}}</p>
+                    <button
+                        onclick="openModal(
+                        '{{ s.sight_name }}',
+                        '{{ s.sight_information|escapejs }}'
+                    )">
+                        Расширить
+                    </button>
+                </div>
+            </div>
+        {% endfor %}
+    <div>
+
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()" style="color: black;">×</span>
+            <h2 id="modal-title" style="color: black;"></h2>
+            <p id="modal-description" style="color: black;"></p>
+        </div>
+    </div>
+    
+
+
+<script>
+    function openModal(title, description) {
+        document.getElementById("modal-title").innerText = title;
+        document.getElementById("modal-description").innerText = description;
+        document.getElementById("modal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+
+
+
+    function filterByCountry(country) {
+        const url = new URL(window.location.href);
+        if (country) {
+            url.searchParams.set('country', country);
+        } else {
+            url.searchParams.delete('country');
+        }
+        window.location.href = url.toString();
+    }
+    
+    function toggleFilters() {
+        const container = document.getElementById('filtersContainer');
+        const toggleBtn = document.querySelector('.toggle-filters-btn');
+        const toggleIcon = toggleBtn.querySelector('.toggle-icon');
+        const toggleText = toggleBtn.querySelector('.toggle-text');
+        
+        if (container.style.display === 'none' || container.style.display === '') {
+            container.style.display = 'block';
+            toggleIcon.textContent = '▲';
+            toggleText.textContent = 'Скрыть фильтры';
+            container.classList.add('filters-visible');
+        } else {
+            container.style.display = 'none';
+            toggleIcon.textContent = '▼';
+            toggleText.textContent = 'Показать фильтры';
+            container.classList.remove('filters-visible');
+        }
+    }
+    
+    // Показываем фильтры при загрузке страницы, если есть выбранная страна
+    document.addEventListener('DOMContentLoaded', function() {
+        const container = document.getElementById('filtersContainer');
+        const hasSelectedCountry = container.getAttribute('data-has-selected-country') === 'true';
+        if (hasSelectedCountry) {
+            toggleFilters();
+        }
+    });
+</script>
+
+
+
 {%endblock%}
+

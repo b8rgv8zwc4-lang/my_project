@@ -18,8 +18,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
+LOGIN_URL = '/sights/login/'
+OPENAI_API_KEY = "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"
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -120,6 +120,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django import forms
 # Create your models here.
 
 class EurasiaSight(models.Model):
@@ -46,45 +46,65 @@ class AustraliaSight(models.Model):
     sight_information = models.TextField("Информация", max_length=1024, default="unknown")
     astrl_photo = models.ImageField("Фото", upload_to='sights/', blank=True, null=True)
     
-class FirstForm(models.Model):
-    your_name = models.CharField("Ваше имя", max_length=32, default="Имя")
-    your_surname = models.CharField("Ваша фамилия", max_length=32, default="Фамилия")
-    visited_country = models.CharField("Где вы были", max_length=128, default="Посещённая страна")
-    seen_sights = models.CharField("Что удивительного увидели", max_length=64, default="Что увидели")
-    experience = models.TextField("Опыт", max_length=128, default="Опыт")
-    
 
-class BuyTourForm(models.Model):
-    your_name = models.CharField("Ваше имя", max_length=32, default="Имя")
-    your_surname = models.CharField("Ваша фамилия", max_length=32, default="Фамилия")
-    your_patronimyc = models.CharField("Ваше отчество", max_length=32, default="Отчество")
-    hotel_stars = models.CharField(
-        max_length=10,
-        choices=[
-            ("2*","2*"),
-            ("3*","3*"),
-            ("4*","4*"),
-            ("5*","5*"),],
-        default="Количество звёзд",
-        verbose_name="Количество звёзд")
-    wished_country_for_visiting = models.CharField(
-        max_length=32,
-        choices=[
-            ("Франция", "Франция"),
-            ("Объединенные Арабские Эмираты", "Объединенные Арабские Эмираты"),
-            ("Таиланд", "Таиланд"),
-            ("Япония", "Япония"),
-            ("Турция", "Турция"),
-            ("Египет", "Египет"),
-            ("Великобритания", "Великобритания"),
-            ("Германия","Германия"),
-            ("Марокко", "Марокко"),
-            ("Китай", "Китай")],
-        default="Куда поедите",
-        verbose_name="Куда поедите"
-    )
-    adult_amount = models.IntegerField("Количество взрослых")
-    children_amount = models.IntegerField("Количество детей")
+
 
 class MyMap(models.Model):
     routes = models.CharField("Названия маршрутов")
+
+
+class TempUser(models.Model):
+    username = models.CharField()
+    password = models.CharField()
+
+
+class Event(models.Model):
+    events = models.CharField()
+    
+
+class MoreAboutCountry(models.Model):
+    image = models.ImageField("Фото", upload_to='sights/', blank=True, null=True)
+    name = models.CharField("Название", max_length=32, default="unknown",)
+    country = models.CharField("Месторасположение", max_length=32, default="unknown",
+                               choices=[
+                                ("Великобритания", "Великобритания"),
+                                ("Германия","Германия"),
+                                ("Россия", "Россия"),
+                                ("Китай", "Китай")
+                            ])
+    information = models.TextField("Информация", max_length=500, default="unknown")
+    rating = models.IntegerField()
+
+class Routes(models.Model):
+    image = models.ImageField("Фото", upload_to='sights/', blank=True, null=True)
+    route_name = models.CharField("Название маршрута",max_length=32, default="unknown")
+    information = models.TextField("Информация", max_length=300, default="unknown")
+    country = models.CharField("Место",max_length=32, default="unknown")
+
+
+class FoodInCoiuntries(models.Model):
+    types = models.CharField("Типы заведения", default="unknown",
+        choices = 
+        [('cafe', 'Кафе'),
+          ('rest', 'Ресторан'),
+            ('fast', 'Фастфуд')]
+            )
+    name = models.CharField("Название заведения", default="unknown")
+    place = models.CharField("Месторасположение", default="unknown")
+    rating = models.IntegerField()
+    image = models.ImageField("Фото", upload_to='sights/',blank=True, null=True )
+    information = models.TextField("Информация", max_length=500, default="unknown")
+
+
+class Summary(models.Model):
+    image = models.ImageField("Фото", upload_to='sights/', blank=True, null=True)
+    name = models.CharField("Название", max_length=32, default="unknown")
+    information = models.TextField("Информация", max_length=500, default="unknown")
+    
+class MainCard(models.Model):
+    image = models.ImageField("Фото", upload_to='sights/', blank=True, null=True)
+    country = models.CharField("Месторасположение", max_length=32, default="unknown")
+    name = models.CharField("Название", max_length=32, default="unknown")
+    information = models.TextField("Информация", max_length=300, default="unknown")
+    rating = models.FloatField()
+

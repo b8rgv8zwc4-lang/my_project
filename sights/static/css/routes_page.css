@@ -1,0 +1,27 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('../sights/photos/map.avif');
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-attachment: fixed;       
+    background-repeat: no-repeat;       
+    background-position: center;       
+    background-size: cover;  
+} 
+
+body::before {
+    content: "";
+    position: fixed;
+    background: url('../sights/photos/map.avif'); 
+    z-index: -1;
+    position: relative;
+    overflow-x: hidden;
+    background-attachment: fixed;       
+    background-repeat: no-repeat;       
+    background-position: center;       
+    background-size: cover;  
+}

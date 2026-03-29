@@ -1,0 +1,20 @@
+{% extends 'sights/layout.html'%}
+
+{% block content %}
+
+<form method="post">
+  {% csrf_token %}
+  
+  <input type="text" name="city" placeholder="Город">
+  <input type="text" name="interests" placeholder="Интересы">
+  <input type="number" name="days" placeholder="Дни">
+
+  <button type="submit">Сгенерировать</button>
+</form>
+
+<div>
+  {{ result }}
+</div>
+
+
+{% endblock %}

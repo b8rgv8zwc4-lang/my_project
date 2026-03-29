@@ -1,0 +1,24 @@
+{% extends "sights/layout.html" %}
+
+{%block title%}
+    Календарь событий
+{%endblock%}
+{% load static %}
+{%block extra_css%}
+    <link rel="stylesheet" href="{% static 'css/events_style.css' %}">
+{%endblock%}
+
+
+{% block content %}
+    <a href="/sights/">Назад</a>
+    <section class="wrapper-container">
+        <article class="card-container">
+            <img src="{% static 'sights/photos/salut.jpeg' %}" alt="stylesheet">
+            <b><p>Январь</p></b>
+            <ul>
+                <li>Концерты по всему миру</li>
+                <li>Салюты и шоу дронов</li>
+            </ul>
+        </article>
+    </section>
+{%endblock%}

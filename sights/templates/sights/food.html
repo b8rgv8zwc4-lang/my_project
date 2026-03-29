@@ -1,0 +1,68 @@
+{%extends "sights/layout.html"%}
+{%load static%}
+{%block title%} Гастрономический тур {%endblock%}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/food_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/food_page.css' %}">
+{%endblock%}
+
+
+{%block content%}
+
+<header class="food-header">
+    <div class="header-container">
+        <div class="food-logo">
+            <span class="icon">🥗</span> Tasty<span>Route</span>
+        </div>
+        <a href="/sights/" class="home-icon-link">
+            <button style="height: 60px;">На главную</button>
+        </a>
+    </div>
+</header>
+
+<div class="cards-container">
+    {% for f in food %}
+    <div class="card">
+        <div class="card-image">
+            {% if f.image %}
+                <img src="{{ f.image.url }}" alt="{{ f.name }}">
+            {%endif%}
+        </div>
+        <div class="card-content">
+            <h3 class="resto_name" style="color: black;">{{ f.name }}</h3>
+            <p class="country">{{ f.place }}</p>
+            <p class="rating">{{ f.rating }}</p>
+            <p style="color: black;">{{ f.information|truncatechars:100}}</p>
+            <button onclick="openModal(
+                '{{ f.name }}',
+                '{{ f.information|escapejs }}'
+            )">
+                Подробнее
+
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+     <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()" style="color: black;">×</span>
+            <h2 id="modal-title" style="color: black;"></h2>
+            <p id="modal-description" style="color: black;"></p>
+        </div>
+    </div>
+    
+<script>
+    function openModal(title, description) {
+        document.getElementById("modal-title").innerText = title;
+        document.getElementById("modal-description").innerText = description;
+        document.getElementById("modal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+    }
+</script>
+
+{%endblock%}

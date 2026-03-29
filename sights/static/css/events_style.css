@@ -1,0 +1,37 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color:aliceblue;
+}
+
+
+.wrapper-container {
+    margin: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: black;
+}
+
+.card-container {
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+    padding: 2rem 1rem;
+    background-color:cornflowerblue;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 300px; 
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+
+.card-container:hover{
+    transform: translateY(-5px); 
+}
+
+.card-container img{
+    width: 100%;
+}
+

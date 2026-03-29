@@ -5,45 +5,21 @@
 {%endblock%}
 {% load static %}
 
-{%block body%}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/form.css' %}">
+{%endblock%}
 
-    <style>
-        body {
-            background-image: url("{% static 'sights/photos/fon.jpg' %}") ;
-        }
-
-        .big-form {
-            max-width: 600px; /* максимальная ширина формы */
-            margin: 0 auto;   /* центрирование формы */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .big-form input, 
-        .big-form textarea, 
-        .big-form select {
-            width: 100%;       /* растянуть поля */
-            padding: 12px;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-        .form-container {
-            background: rgba(255, 255, 255, 0.1); /* прозрачность */
-            backdrop-filter: blur(10px);          /* размытие фона */
-            padding: 30px;
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-            
-    </style>
+{%block content%}
 
     <a href="/sights/">Назад</a>
     <h3 style="text-align: center;">Заполните форму</h3>
-    <form method="post"  class="big-form" class="card" class="form-container">
-        {% csrf_token %}
-        {{form.as_div}}
-        <input type="submit">
-    </form>
+    {% if request.user.is_authenticated %}
+        <form method="post"  class="big-form" class="card" class="form-container">
+            {% csrf_token %}
+            {{form.as_div}}
+            <input type="submit">
+        </form>
+    {% else %}
+        <p>Пожалуйста, <a href="/sights/login/">зарегистрируйтесь</a></p>
+    {%endif%}
 {%endblock%}

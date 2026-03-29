@@ -1,0 +1,135 @@
+{% extends "sights/layout.html" %}
+{%block title%}
+    Интерактивная карта маршрутов по континентам
+{%endblock%}
+{% load static %}
+{%block extra_css%}
+    <link rel="stylesheet" href="{% static 'css/routes_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/routes_page.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+{%endblock%}
+
+
+{%block content%}
+
+<a href="/sights/"><button>На главную</button></a>
+  <div id="map"></div>
+
+
+  
+
+  <div id="info-panel">
+      <img id="place-img" src="" alt="">
+      <h3 id="place-title" style="color: aliceblue;"></h3>
+      <p id="place-text"></p>
+  </div>
+
+  
+<script>
+    const map = L.map('map').setView([20, 0], 2);
+
+
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>', subdomains: 'abcd', maxZoom: 19
+}).addTo(map);
+
+
+
+  const places = [
+    {
+        title: "Эйфелева башня",
+        text: "Символ Парижа и одна из самых посещаемых достопримечательностей мира.",
+        img: "https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/f02bf9e6-3603-4476-afa6-4b5dcd94cb7b/-/format/webp/-/resize/1300x/",
+        coords: [48.8584, 2.2945]
+    },
+    {
+        title: "Колизей",
+        text: "Древнеримский амфитеатр, переживший более 2000 лет истории.",
+        img: "https://7d9e88a8-f178-4098-bea5-48d960920605.selcdn.net/583665dc-c63e-4d7e-bdc4-c80bfad7756a/-/format/webp/-/resize/1300x/",
+        coords: [41.8902, 12.4922]
+    },
+    {
+        title: "Статуя Свободы",
+        text: "Один из главных символов США и Нью-Йорка.",
+        img: "https://turpoisk.ua/images/blog/svoboda/svoboda1.jpg",
+        coords: [40.6892, -74.0445]
+    },
+    {
+        title: "Тадж-Махал",
+        text: "Мавзолей любви и архитектурное чудо Индии.",
+        img: "https://resize.tripster.ru/_lmfVfkUKWpgZgKRIKO1alJxAQ4=/fit-in/1220x600/filters:no_upscale()/https://cdn.tripster.ru/photos/b918df6b-de9c-442f-8066-e8fb6078da58.jpg",
+        coords: [27.1751, 78.0421]
+    },
+
+    {
+        title: "Мачу-Пикчу",
+        text: "Затерянный город инков высоко в Андах.",
+        img: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0a/f9/c4/86/photo0jpg.jpg?w=900&h=500&s=1",
+        coords: [-13.1631, -72.5450]
+    },
+    {
+        title: "Петра",
+        text: "Древний город в скалах, одно из новых чудес света.",
+        img: "https://turpoisk.ua/images/blog/petra/petra.jpg",
+        coords: [30.3285, 35.4444]
+    },
+    {
+        title: "Великая Китайская стена",
+        text: "Грандиозное сооружение, протянувшееся на тысячи километров.",
+        img: "https://resize.tripster.ru/Ya_sz8MljgZLux6TQYTPPldWLDk=/fit-in/1220x600/filters:no_upscale()/https://cdn.tripster.ru/photos/8967bb8a-a206-4e8e-ab87-77f963149141.jpg?width=1200&height=630",
+        coords: [40.4319, 116.5704]
+    },
+    {
+        title: "Сиднейский оперный театр",
+        text: "Один из самых узнаваемых архитектурных символов Австралии.",
+        img: "https://www.architime.ru/specarch/jorn_utzon/1.jpg",
+        coords: [-33.8568, 151.2153]
+    },
+    {
+        title: "Северное сияние (Тромсё)",
+        text: "Одно из лучших мест в мире для наблюдения авроры.",
+        img: "https://34travel.me/media/upload/images/2018/march/norway/big2.jpg",
+        coords: [69.6492, 18.9553]
+    }
+];
+
+  // Кастомная иконка
+  const pulseIcon = L.divIcon({
+      className: '',
+      html: '<div class="pulse"></div>',
+      iconSize: [18, 18]
+  });
+
+  // Панель
+  const panel = document.getElementById("info-panel");
+  const img = document.getElementById("place-img");
+  const title = document.getElementById("place-title");
+  const text = document.getElementById("place-text");
+
+  // Отрисовка
+  places.forEach(place => {
+      const marker = L.marker(place.coords, { icon: pulseIcon }).addTo(map);
+
+      marker.on("click", () => {
+          img.src = place.img;
+          title.innerText = place.title;
+          text.innerText = place.text;
+          panel.style.display = "block";
+      });
+  });
+
+</script>
+
+
+
+{%endblock%}
+
+
+
+

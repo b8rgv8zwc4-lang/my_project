@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('../sights/photos/background_image.avif');
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    background-attachment: fixed;       
+    background-repeat: no-repeat;       
+    background-position: center;       
+    background-size: cover;  
+} 
+
+body::before {
+    content: "";
+    position: fixed;
+    background: url('../sights/photos/background_image.avif'); 
+    z-index: -1;
+    position: relative;
+    overflow-x: hidden;
+    background-attachment: fixed;       
+    background-repeat: no-repeat;       
+    background-position: center;       
+    background-size: cover;  
+}
+
+button {
+    display: flex;
+    gap: 10px;
+    text-align: center;
+    margin-left: 10px;
+    background-color: #38bdf8;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 10px 20px rgba(56,189,248,0.3);
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #475569;
+}

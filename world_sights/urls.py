@@ -23,10 +23,12 @@ from sights.views import (main_page,
                           north_page, 
                           africa_page, 
                           australia_page, 
-                          CreateForm, 
-                          info_page, 
-                          CreateFormForBuyingTour,
-                          create_map)
+                          create_event,
+                          create_model_about_country,
+                          create_routes,
+                          create_food_in_countries,
+                          create_quiz_page,
+                          )
 from django.shortcuts import redirect
 from django.conf.urls.static import static
 from django.conf import settings
@@ -45,11 +47,11 @@ urlpatterns = [
     path('sights/north_am/', north_page),
     path('sights/africa/', africa_page),
     path('sights/australia/', australia_page),
-    path('sights/form/', CreateForm.as_view(), name="form"),
-    path('sights/information/', info_page, name='info'),
-    path('sights/buy_tour/', CreateFormForBuyingTour.as_view(), name="buy_tour"),
-    path('sights/routes/', create_map)
-    
+    path("sights/events/", create_event),
+    path("sights/more/", create_model_about_country),
+    path("sights/routes/", create_routes),
+    path("sights/food/", create_food_in_countries),
+    path("sights/quiz/", create_quiz_page),
 ]
 
 

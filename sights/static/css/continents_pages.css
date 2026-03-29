@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: url('../sights/photos/continets_fon.avif');
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    min-height: 100%;
+    position: relative;
+    overflow-x: hidden;
+    background-attachment: fixed;       
+    background-repeat: no-repeat;       
+    background-position: center;       
+    background-size: cover;  
+    background-size: cover;
+} 
+
+body::before {
+    content: "";
+    position: fixed;
+    background: url('../sights/photos/continets_fon.avif'); 
+    z-index: -1;
+    position: relative;
+    overflow-x: hidden;
+    background-attachment: fixed;       
+    background-repeat: no-repeat;       
+    background-position: center;       
+    background-size: cover;  
+}
+
+button {
+    width: 150px;
+    display: flex;
+    gap: 20px;
+    text-align: center;
+    margin-left: 100px;
+    background-color: #38bdf8;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 10px 20px rgba(56,189,248,0.3);
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: #475569;
+}
