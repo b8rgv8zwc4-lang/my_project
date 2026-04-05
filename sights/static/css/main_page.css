@@ -44,3 +44,264 @@ button {
 button:hover {
     background-color: #475569;
 }
+
+/* ——— Поиск по достопримечательностям ——— */
+/* .main-sights-search-wrap {
+    width: 100%;
+    max-width: min(720px, calc(100% - 32px));
+    margin: 2.5rem auto 2rem;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.sight-search-panel {
+    position: relative;
+    padding: clamp(1.1rem, 3.5vw, 1.65rem) clamp(1rem, 3vw, 1.75rem);
+    border-radius: clamp(16px, 3vw, 22px);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.09) 0%,
+            rgba(255, 255, 255, 0.02) 50%,
+            rgba(15, 23, 42, 0.4) 100%
+        );
+    background-color: rgba(12, 18, 32, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.22),
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 0 0 1px rgba(56, 189, 248, 0.06);
+    backdrop-filter: blur(22px) saturate(165%);
+    -webkit-backdrop-filter: blur(22px) saturate(165%);
+}
+
+.sight-search-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        135deg,
+        rgba(56, 189, 248, 0.35) 0%,
+        rgba(255, 255, 255, 0.08) 40%,
+        rgba(56, 189, 248, 0.12) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.sight-search-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    margin-bottom: clamp(0.75rem, 2vw, 1rem);
+    position: relative;
+    z-index: 1;
+}
+
+.sight-search-label-text {
+    font-size: clamp(1rem, 2.4vw, 1.15rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #f8fafc;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+}
+
+.sight-search-label-hint {
+    font-size: clamp(0.8rem, 2vw, 0.875rem);
+    font-weight: 500;
+    color: rgba(226, 232, 240, 0.72);
+    line-height: 1.4;
+    max-width: 36em;
+}
+
+.sight-search-field {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: clamp(48px, 8vw, 54px);
+    padding: 0 0.35rem 0 clamp(0.65rem, 2vw, 0.85rem);
+    border-radius: 14px;
+    background: rgba(2, 6, 23, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15) inset;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.sight-search-field:focus-within {
+    border-color: rgba(56, 189, 248, 0.55);
+    background: rgba(2, 6, 23, 0.58);
+    box-shadow:
+        0 0 0 3px rgba(56, 189, 248, 0.18),
+        0 2px 16px rgba(56, 189, 248, 0.12) inset;
+}
+
+.sight-search-icon {
+    flex-shrink: 0;
+    font-size: clamp(1.25rem, 3.5vw, 1.45rem);
+    color: #38bdf8;
+    opacity: 0.92;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.35));
+}
+
+.sight-search-input {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    color: #f1f5f9;
+    font-size: clamp(16px, 2.8vw, 1.05rem);
+    font-family: inherit;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.sight-search-input::placeholder {
+    color: rgba(148, 163, 184, 0.85);
+}
+
+.sight-search-input::-webkit-search-decoration,
+.sight-search-input::-webkit-search-cancel-button,
+.sight-search-input::-webkit-search-results-button,
+.sight-search-input::-webkit-search-results-decoration {
+    display: none;
+    -webkit-appearance: none;
+}
+
+.sight-search-clear {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(241, 245, 249, 0.9);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+.sight-search-clear i {
+    font-size: 1.35rem;
+}
+
+.sight-search-clear:hover {
+    background: rgba(56, 189, 248, 0.25);
+    color: #fff;
+}
+
+.sight-search-clear:active {
+    transform: scale(0.94);
+}
+
+.sight-search-empty {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    margin: clamp(0.85rem, 2.5vw, 1.1rem) 0 0;
+    padding: clamp(0.75rem, 2vw, 0.9rem) clamp(0.85rem, 2vw, 1rem);
+    border-radius: 12px;
+    font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+    line-height: 1.45;
+    color: rgba(254, 226, 226, 0.95);
+    background: rgba(127, 29, 29, 0.28);
+    border: 1px solid rgba(248, 113, 113, 0.25);
+    text-align: left;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+}
+
+.sight-search-empty[hidden] {
+    display: none !important;
+}
+
+.sight-search-empty-icon {
+    flex-shrink: 0;
+    font-size: 1.25rem;
+    color: #fca5a5;
+    margin-top: 0.1em;
+}
+
+@media (max-width: 768px) {
+    .main-sights-search-wrap {
+        max-width: calc(100% - 24px);
+        margin: 1.75rem auto 1.5rem;
+        padding: 0 12px;
+    }
+
+    .sight-search-panel {
+        padding: 1rem 1.1rem;
+    }
+
+    .sight-search-label-hint {
+        font-size: 0.78rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-sights-search-wrap {
+        max-width: 100%;
+        margin: 1.25rem 0 1.25rem;
+        padding: 0 12px;
+    }
+
+    .sight-search-label-text {
+        font-size: 1rem;
+    }
+
+    .sight-search-label-hint {
+        display: none;
+    }
+
+    .sight-search-field {
+        border-radius: 12px;
+        padding-left: 0.55rem;
+    }
+
+    .sight-search-input {
+        font-size: 16px;
+    }
+
+    .sight-search-empty {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .sight-search-empty-icon {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .main-sights-search-wrap {
+        max-width: 760px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sight-search-field,
+    .sight-search-clear {
+        transition: none;
+    }
+
+    .sight-search-clear:active {
+        transform: none;
+    }
+} */

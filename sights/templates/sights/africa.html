@@ -11,39 +11,38 @@
     <link rel="stylesheet" href="{% static 'css/filters.css' %}">
 {%endblock%}
 {% block content %}
+    <div class="africa-filters-top">
+        <div class="toggle-filters-wrapper">
+            <button class="toggle-filters-btn" onclick="toggleFilters()">
+                <span class="toggle-icon">▼</span>
+                <span class="toggle-text">Показать фильтры</span>
+            </button>
+        </div>
+        <div class="filters-container" id="filtersContainer" style="display: none;" data-has-selected-country="{% if selected_country %}true{% else %}false{% endif %}">
+            <div class="filters-wrapper">
+                <h3 class="filters-title">Фильтр по странам:</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn {% if not selected_country %}active{% endif %}" 
+                            onclick="filterByCountry('')">
+                        Все страны
+                    </button>
+                    {% for country in countries %}
+                        <button class="filter-btn {% if selected_country == country %}active{% endif %}" 
+                                onclick="filterByCountry('{{ country }}')">
+                            {{ country }}
+                        </button>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <a href="/sights/">
         <button>
             На главную
         </button>
     </a>
-    
-    <!-- Кнопка переключения фильтров -->
-    <div class="toggle-filters-wrapper">
-        <button class="toggle-filters-btn" onclick="toggleFilters()">
-            <span class="toggle-icon">▼</span>
-            <span class="toggle-text">Показать фильтры</span>
-        </button>
-    </div>
-    
-    <!-- Фильтры по странам -->
-    <div class="filters-container" id="filtersContainer" style="display: none;" data-has-selected-country="{% if selected_country %}true{% else %}false{% endif %}">
-        <div class="filters-wrapper">
-            <h3 class="filters-title">Фильтр по странам:</h3>
-            <div class="filter-buttons">
-                <button class="filter-btn {% if not selected_country %}active{% endif %}" 
-                        onclick="filterByCountry('')">
-                    Все страны
-                </button>
-                {% for country in countries %}
-                    <button class="filter-btn {% if selected_country == country %}active{% endif %}" 
-                            onclick="filterByCountry('{{ country }}')">
-                        {{ country }}
-                    </button>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-    
+
     <div class="cards-container">
         {% for a_s in a_sight %}
         <div class="card">

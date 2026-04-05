@@ -157,15 +157,15 @@ function showResults() {
   const percentage = (score / quizQuestions.length) * 100;
 
   if (percentage === 100) {
-    resultMessage.textContent = "Perfect! You're a genius!";
+    resultMessage.textContent = "Прекрасно! Вы гений!";
   } else if (percentage >= 80) {
-    resultMessage.textContent = "Great job! You know your stuff!";
+    resultMessage.textContent = "Хорошая работа!";
   } else if (percentage >= 60) {
-    resultMessage.textContent = "Good effort! Keep learning!";
+    resultMessage.textContent = "Достаточно усилий! Продолжайте в том же духе!";
   } else if (percentage >= 40) {
-    resultMessage.textContent = "Not bad! Try again to improve!";
+    resultMessage.textContent = "Не плохо! Пробуйте еще раз длч улучшения!";
   } else {
-    resultMessage.textContent = "Keep studying! You'll get better!";
+    resultMessage.textContent = "Продолжайте изучать! Вы можете лучше!";
   }
 }
 

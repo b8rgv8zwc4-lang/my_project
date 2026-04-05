@@ -24,7 +24,7 @@ def main_page(request):
 def euro_page(request): 
     sight = EurasiaSight.objects.all()
     
-    # Получаем уникальные страны для фильтра
+    #  Здесь получаем уникальные страны для фильтра
     countries = EurasiaSight.objects.values_list('sight_country', flat=True).distinct().order_by('sight_country')
     
     # Фильтрация по стране из GET параметра
@@ -135,6 +135,5 @@ def create_summary(request):
 
 def create_quiz_page(request):
     return render(request, "sights/quiz.html")
-
 
 
