@@ -1,0 +1,78 @@
+{% extends "sights/layout.html" %}
+{% load static %}
+
+{% block title %}Отзывы путешественников{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/main_css.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reviews.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="reviews-page">
+    <div class="reviews-container">
+        <div class="reviews-header">
+            <a href="/sights/" class="back-link">← На главную</a>
+            <h1>Оценки и короткие отзывы</h1>
+            <p>Поделитесь впечатлениями о достопримечательностях и помогите другим выбрать место для следующего путешествия.</p>
+        </div>
+
+        {% if messages %}
+            <div class="alerts">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div class="reviews-layout">
+            <article class="review-form-card">
+                <h2>Оставить отзыв</h2>
+                <form method="post" class="review-form">
+                    {% csrf_token %}
+                    <label for="author_name">Ваше имя</label>
+                    <input id="author_name" name="author_name" type="text" maxlength="80" required>
+
+                    <label for="sight_name">Достопримечательность</label>
+                    <input id="sight_name" name="sight_name" type="text" maxlength="120" required>
+
+                    <label for="rating">Оценка</label>
+                    <select id="rating" name="rating" required>
+                        <option value="5">5 - Отлично</option>
+                        <option value="4">4 - Очень хорошо</option>
+                        <option value="3">3 - Нормально</option>
+                        <option value="2">2 - Слабо</option>
+                        <option value="1">1 - Не понравилось</option>
+                    </select>
+
+                    <label for="comment">Короткий отзыв</label>
+                    <textarea id="comment" name="comment" rows="5" maxlength="500" required placeholder="Что особенно запомнилось?"></textarea>
+
+                    <button type="submit">Опубликовать отзыв</button>
+                </form>
+            </article>
+
+            <article class="reviews-feed-card">
+                <h2>Лента отзывов</h2>
+                <div class="reviews-feed">
+                    {% for review in reviews %}
+                        <div class="review-item">
+                            <div class="review-item-top">
+                                <h3>{{ review.sight_name }}</h3>
+                                <span class="review-rating">{{ review.rating }}/5</span>
+                            </div>
+                            <p class="review-comment">{{ review.comment }}</p>
+                            <div class="review-meta">
+                                <span>{{ review.author_name }}</span>
+                                <span>{{ review.created_at|date:"d.m.Y H:i" }}</span>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p class="no-reviews">Пока отзывов нет. Будьте первым, кто поделится впечатлением.</p>
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+{% endblock %}

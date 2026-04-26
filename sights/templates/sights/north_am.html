@@ -14,7 +14,7 @@
 {%block content%}
 
 
-    <!-- Кнопка переключения фильтров -->
+   
     <div class="toggle-filters-wrapper">
         <button class="toggle-filters-btn" onclick="toggleFilters()">
             <span class="toggle-icon">▼</span>
@@ -22,7 +22,7 @@
         </button>
     </div>
 
-    <!-- Фильтры по странам -->
+    
     <div class="filters-container" id="filtersContainer" style="display: none;" data-has-selected-country="{% if selected_country %}true{% else %}false{% endif %}">
         <div class="filters-wrapper">
             <h3 class="filters-title">Фильтр по странам:</h3>
@@ -41,7 +41,7 @@
         </div>
     </div>
     
-    <a href="/sights/"><button>На главную</button></a>
+    
     <div class="cards-container">
         {% for n_s in n_sight %}
         <div class="card">

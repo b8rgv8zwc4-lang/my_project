@@ -7,7 +7,8 @@ from .models import (AustraliaSight,
                     MoreAboutCountry,
                     Routes, 
                     FoodInCoiuntries,
-                    MainCard)
+                    MainCard,
+                    UserReview)
 # Register your models here.
 
 
@@ -20,3 +21,4 @@ admin.site.register(MoreAboutCountry)
 admin.site.register(Routes)
 admin.site.register(FoodInCoiuntries)
 admin.site.register(MainCard)
+admin.site.register(UserReview)

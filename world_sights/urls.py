@@ -28,6 +28,8 @@ from sights.views import (main_page,
                           create_routes,
                           create_food_in_countries,
                           create_quiz_page,
+                          login_view,
+                          reviews_page,
                           )
 from django.shortcuts import redirect
 from django.conf.urls.static import static
@@ -35,7 +37,7 @@ from django.conf import settings
 
 
 def redirect_to_main_page(request):
-    return redirect('sights/')
+    return redirect('/sights/login/')
 
 
 urlpatterns = [
@@ -52,6 +54,8 @@ urlpatterns = [
     path("sights/routes/", create_routes),
     path("sights/food/", create_food_in_countries),
     path("sights/quiz/", create_quiz_page),
+    path("sights/reviews/", reviews_page),
+    path('sights/login/', login_view, name='login'),
 ]
 
 

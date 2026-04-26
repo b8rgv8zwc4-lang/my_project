@@ -1,0 +1,30 @@
+{% extends "sights/layout.html" %}
+{% load static %}
+{% block title %}Вход{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<section class="login-hero">
+        <form method="post" class="login-form" novalidate>
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_username" style="color: aliceblue;">Имя пользователя</label>
+                <input id="id_username" name="username" type="text" required placeholder="Введите имя пользователя">
+            </div>
+
+            <div class="field">
+                <label for="id_password" style="color: aliceblue;">Пароль</label>
+                <input id="id_password" name="password" type="password" required placeholder="Введите пароль">
+            </div>
+
+            <button type="submit" class="btn-login" style="color: aliceblue;">Войти</button>
+
+            <p class="login-note" style="color: aliceblue;">Нет аккаунта? <a href="/admin/">Создайте через админку</a></p>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
