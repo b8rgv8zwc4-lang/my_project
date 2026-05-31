@@ -6,14 +6,142 @@
 
 
 {%block extra_css%}
-    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{% static 'css/main_css.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
-    <link rel="stylesheet" href="{% static 'css/modal_style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main_page_theme.css' %}">
 {%endblock%}
 
 
 {%block content%} 
+<style>
+    .intro-showcase {
+    position: relative;
+    margin: 96px 20px 26px;
+    min-height: min(82vh, 720px);
+    border-radius: 26px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--card-shadow);
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 42px 28px;
+}
+
+.intro-bg-layer {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(140deg, rgba(2, 6, 23, 0.9), rgba(2, 6, 23, 0.58)),
+        radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.35), transparent 38%),
+        radial-gradient(circle at 82% 15%, rgba(56, 189, 248, 0.32), transparent 42%),
+        url("../sights/photos/new_fon.jpg");
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.04);
+    filter: saturate(1.1) brightness(0.68);
+}
+
+.intro-noise-layer {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 52px 52px;
+    mask-image: radial-gradient(circle at center, black 28%, transparent 100%);
+    opacity: 0.5;
+}
+
+.intro-content {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    text-align: center;
+}
+
+.intro-badge {
+    display: inline-block;
+    margin: 0 0 16px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(125, 211, 252, 0.45);
+    background: rgba(14, 165, 233, 0.15);
+    color: #dbeafe;
+    text-transform: uppercase;
+    letter-spacing: 0.13em;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.intro-title {
+    margin: 0;
+    color: #f8fafc;
+    font-size: clamp(2.2rem, 6.7vw, 5.2rem);
+    line-height: 1.04;
+    text-shadow: 0 10px 35px rgba(2, 6, 23, 0.75);
+}
+
+.intro-subtitle {
+    margin: 20px auto 0;
+    max-width: 760px;
+    color: rgba(226, 232, 240, 0.93);
+    font-size: clamp(1rem, 2.1vw, 1.25rem);
+    line-height: 1.65;
+}
+
+.intro-actions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.intro-actions a {
+    text-decoration: none;
+}
+
+.intro-actions button {
+    margin: 0;
+    background: rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(125, 211, 252, 0.55);
+    color: #f0f9ff;
+}
+
+.intro-actions button:hover {
+    background: rgba(56, 189, 248, 0.42);
+}
+
+.intro-stats {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.intro-stat-item {
+    background: rgba(15, 23, 42, 0.55);
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 14px;
+    padding: 14px 10px;
+    backdrop-filter: blur(8px);
+}
+
+.intro-stat-value {
+    display: block;
+    color: #f8fafc;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    font-weight: 800;
+}
+
+.intro-stat-label {
+    display: block;
+    margin-top: 4px;
+    color: rgba(203, 213, 225, 0.86);
+    font-size: 0.85rem;
+}
+</style>
 
 <header class="navbar">
     <nav class="nav-links">
@@ -42,34 +170,38 @@
 </header>
 
 
-<section class="hero hero-showcase">
-    <span class="hero-glow hero-glow-1"></span>
-    <span class="hero-glow hero-glow-2"></span>
-    <span class="hero-grid" aria-hidden="true"></span>
-    <div class="hero-content">
-        <h1 class="hero-title">Мир в объективе всех городов</h1>
-        <p class="hero-subtitle">Откройте для себя самые захватывающие локации планеты: от затерянных храмов Востока до футуристических мегаполисов. Ваше следующее приключение начинается здесь.</p>
-        <div class="hero-actions">
-            <a href="/sights/routes/"><button>
-                    Интерактивная карта мира
-                </button>
-            </a> 
-            <a href="/sights/quiz/">
-                <button>
-                    Пройти викторину
-                </button> 
-            </a>
-            <a href="/sights/reviews/"><button>
-                    Отзывы путешественников
-                </button>
-            </a>
+<section class="intro-showcase">
+    <div class="intro-bg-layer"></div>
+    <div class="intro-noise-layer"></div>
+    <div class="intro-content">
+        <p class="intro-badge">Premium travel guide</p>
+        <h1 class="intro-title">Мир в объективе</h1>
+        <p class="intro-subtitle">
+            Сохраняйте лучшие идеи для путешествий, открывайте редкие места и вдохновляйтесь маршрутами по самым ярким достопримечательностям планеты.
+        </p>
+        <div class="intro-actions">
+            <a href="/sights/routes/"><button>Исследовать карту мира</button></a>
+            <a href="/sights/reviews/"><button>Читать отзывы</button></a>
+        </div>
+        <div class="intro-stats">
+            <div class="intro-stat-item">
+                <span class="intro-stat-value">120+</span>
+                <span class="intro-stat-label">Локаций</span>
+            </div>
+            <div class="intro-stat-item">
+                <span class="intro-stat-value">5</span>
+                <span class="intro-stat-label">Континентов</span>
+            </div>
+            <div class="intro-stat-item">
+                <span class="intro-stat-value">24/7</span>
+                <span class="intro-stat-label">Вдохновение</span>
+            </div>
         </div>
     </div>
 </section>
 
 
-
-<div class="cards-container" style="margin-top: 0px;">
+<div class="cards-container cards-grid-main">
         {% for c in card %}
         <div class="card" data-sight-name="{{ c.name|escape }}">
             <div class="card-image">
@@ -88,19 +220,23 @@
     </div>
    
         
-<footer class="modern-footer" style="margin-left: 20px; margin-right: 20px;">
+<footer class="modern-footer footer-main">
     <div class="footer-line"></div>
     
     <div class="footer-wrapper">
         <div class="footer-content">
             <div class="footer-info">
-                <a href="#" class="footer-logo">My<span>SITE</span></a>
-                <div class="social-links">
-                    <a href="/sights/food/"><button style="margin-left: 250px;">Где поесть?</button></a> 
+                <a href="#" class="footer-logo">My<span>SITE</span></a>              
+                 <div class="hero-actions">
+                    <a href="/sights/food/">
+                        <button class="food-btn">Где поесть?</button>
+                    </a>     
+                    <a href="/sights/quiz/">
+                        <button> Пройти викторину</button>
+                    </a>
                 </div>
             </div>
         </div>
-
         <div class="footer-copyright">
             <p>© 2026 MySite. Сделано с вдохновением.</p>
             <div class="legal-links">
@@ -110,45 +246,6 @@
         </div>
     </div>
 </footer>
-
-<script>
-(function () {
-    var input = document.getElementById('sight-search-input');
-    var clearBtn = document.getElementById('sight-search-clear');
-    var container = document.querySelector('.cards-container');
-    if (!input || !container) return;
-    var cards = container.querySelectorAll('.card');
-    var emptyMsg = document.getElementById('sight-search-empty');
-
-    function filterCards() {
-        var q = input.value.trim().toLowerCase();
-        var visible = 0;
-        cards.forEach(function (card) {
-            var name = (card.getAttribute('data-sight-name') || '').toLowerCase();
-            var match = !q || name.indexOf(q) !== -1;
-            card.style.display = match ? '' : 'none';
-            if (match) visible++;
-        });
-        if (emptyMsg) {
-            emptyMsg.hidden = !(q && visible === 0);
-        }
-        if (clearBtn) {
-            clearBtn.hidden = !input.value.trim();
-        }
-    }
-
-    input.addEventListener('input', filterCards);
-    if (clearBtn) {
-        clearBtn.addEventListener('click', function () {
-            input.value = '';
-            input.focus();
-            filterCards();
-        });
-    }
-})();
-</script>
-
-
 
 
 {%endblock%} 

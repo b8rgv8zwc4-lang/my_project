@@ -1,15 +1,40 @@
+:root {
+    --bg-main: #04070d;
+    --bg-gradient-1: rgba(56, 189, 248, 0.2);
+    --bg-gradient-2: rgba(30, 64, 175, 0.2);
+    --surface: rgba(15, 23, 42, 0.72);
+    --surface-2: rgba(15, 23, 42, 0.9);
+    --text-main: #e2e8f0;
+    --text-muted: #cbd5e1;
+    --text-strong: #ffffff;
+    --border: rgba(148, 163, 184, 0.25);
+    --accent: #38bdf8;
+    --accent-soft: rgba(56, 189, 248, 0.22);
+    --card-shadow: 0 18px 45px rgba(2, 8, 23, 0.45);
+}
+
+body[data-theme="light"] {
+    --bg-main: #f2f6fd;
+    --bg-gradient-1: rgba(56, 189, 248, 0.14);
+    --bg-gradient-2: rgba(30, 64, 175, 0.1);
+    --surface: rgba(255, 255, 255, 0.8);
+    --surface-2: rgba(255, 255, 255, 0.92);
+    --text-main: #0f172a;
+    --text-muted: #334155;
+    --text-strong: #020617;
+    --border: rgba(71, 85, 105, 0.2);
+    --accent: #0284c7;
+    --accent-soft: rgba(2, 132, 199, 0.16);
+    --card-shadow: 0 14px 35px rgba(15, 23, 42, 0.16);
+}
+
 body {
-    margin: 0;
-    background: url('../sights/photos/for_food_page.avif');
-    min-height: 100vh;
-    position: relative;
-    overflow-x: hidden;
-    background-attachment: fixed;       
-    background-repeat: no-repeat;       
-    background-position: center;       
-    background-size: cover;  
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background:
+        radial-gradient(circle at 10% 12%, var(--bg-gradient-1), transparent 45%),
+        radial-gradient(circle at 90% 8%, var(--bg-gradient-2), transparent 42%),
+        var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 button {
