@@ -67,7 +67,7 @@
 
 5. Создайте суперпользователя для доступа в админ-панель:
    ```bash
-  python manage.py createsuperuser
+     python manage.py createsuperuser
 
 7. Запустите сервер разработки:
    ```bash
