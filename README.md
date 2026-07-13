@@ -49,6 +49,7 @@
    cd my_project
 2. Создайте и активируйте виртуальное окружение:
    # Для Windows
+   ```bash
    python -m venv venv
    venv\Scripts\activate
 
@@ -57,18 +58,22 @@
    source venv/bin/activate
 
 3. Установите зависимости:
+   ```bash
    pip install -r requirements.txt
 
 4. Примените миграции базы данных:
+   ```bash
    python manage.py migrate
 
 5. Создайте суперпользователя для доступа в админ-панель:
+   ```bash
   python manage.py createsuperuser
 
-6. Запустите сервер разработки:
+7. Запустите сервер разработки:
+   ```bash
    python manage.py runserver
 
-7. Откройте браузер и перейдите по адресу:
+9. Откройте браузер и перейдите по адресу:
   Сайт: http://127.0.0.1:8000/
   Админ-панель: http://127.0.0.1:8000/admin/
 
