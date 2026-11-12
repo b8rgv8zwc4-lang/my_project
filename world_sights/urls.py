@@ -37,7 +37,7 @@ from django.conf import settings
 
 
 def redirect_to_main_page(request):
-    return redirect('/sights/login/')
+    return redirect('sights/')
 
 
 urlpatterns = [

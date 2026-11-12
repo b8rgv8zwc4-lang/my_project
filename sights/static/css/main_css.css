@@ -82,35 +82,34 @@ h1 {
 }
 
 .dropdown-click {
-position: relative;
-display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 .dropdown-toggle { display: none; }
 .dropbtn {
-backdrop-filter: blur(10px);
-background: rgba(255, 255, 255, 0.12);
-padding: 12px 20px;
-border-radius: 8px;
-cursor: pointer;
-display: block;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
 }
 .dropdown-content {
-display: none;
-position: absolute;
-backdrop-filter: blur(10px);
-background: rgba(255, 255, 255, 0.12);
-min-width: 220px;
-box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-border-radius: 8px;
-top: 100%;
-left: 0;
-margin-top: 5px;
-z-index: 1000;
+    display: none;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.12);
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    top: 100%;
+    left: 0;
+    margin-top: 5px;
+    z-index: 1000;
 }
 .dropdown-content a { display: block; padding: 12px 16px; text-decoration: none; color: #333; }
 .dropdown-content a:hover { background: rgba(255, 255, 255, 0.12); }
 
-/* Открываем при клике */
 #dropdown-toggle:checked ~ .dropdown-content {
 display: block;
 }
@@ -143,9 +142,9 @@ display: block;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .site-footer {
-padding: 40px 0 20px;
-margin-top: 50px;
-font-family: Arial, sans-serif;
+    padding: 40px 0 20px;
+    margin-top: 50px;
+    font-family: Arial, sans-serif;
 }
 
 .footer-content {
